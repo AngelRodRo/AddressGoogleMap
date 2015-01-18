@@ -11,6 +11,8 @@ import android.location.Address;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 import java.util.Locale;
@@ -19,6 +21,7 @@ import java.util.Locale;
 public class MainActivity extends ActionBarActivity {
 
     GoogleMap map;
+    Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +57,9 @@ public class MainActivity extends ActionBarActivity {
     public void getGoogleMap(){
         if(map==null) {
             map = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapView)).getMap();
-            map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                 @Override
-                public void onMapClick(LatLng latLng) {
+                public void onMapLongClick(LatLng latLng) {
                     try {
                         double latitude = latLng.latitude;
                         double longitude = latLng.longitude;
@@ -77,5 +80,12 @@ public class MainActivity extends ActionBarActivity {
                 }
             });
         }
+    }
+
+    public void addMarker(){
+        marker = map.addMarker(new MarkerOptions()
+                        .position(new LatLng(20,20))
+                        .title("Mi marcador")
+        );
     }
 }
