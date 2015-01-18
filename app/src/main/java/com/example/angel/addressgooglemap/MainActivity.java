@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
             map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                 @Override
                 public void onMapLongClick(LatLng latLng) {
-                    try {
+/*                    try {
                         double latitude = latLng.latitude;
                         double longitude = latLng.longitude;
                         Geocoder geo = new Geocoder(getApplicationContext(), Locale.getDefault());
@@ -76,16 +76,29 @@ public class MainActivity extends ActionBarActivity {
                     }
                     catch (Exception e) {
                         e.printStackTrace(); // getFromLocation() may sometimes fail
+                    }*/
+
+                    try {
+                        double latitude = latLng.latitude;
+                        double longitude = latLng.longitude;
+                        Geocoder geo = new Geocoder(getApplicationContext(), Locale.getDefault());
+                        List<Address> addresses = geo.getFromLocation(latitude, longitude, 1);
+                        String address = addresses.get(0).getFeatureName();
+                        addMarker(latLng,address);
+
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace(); // getFromLocation() may sometimes fail
                     }
                 }
             });
         }
     }
 
-    public void addMarker(){
+    public void addMarker(LatLng latLng, String address){
         marker = map.addMarker(new MarkerOptions()
-                        .position(new LatLng(20,20))
-                        .title("Mi marcador")
+                        .position(latLng)
+                        .title("Address : " + address)
         );
     }
 }
