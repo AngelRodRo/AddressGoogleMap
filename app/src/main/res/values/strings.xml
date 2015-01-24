@@ -4,5 +4,7 @@
     <string name="app_name">AddressGoogleMap</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_list_notifications">list_notifications</string>
+    <string name="title_activity_map">MapActivity</string>
 
 </resources>

@@ -29,9 +29,6 @@ public abstract class Lista_adaptador extends BaseAdapter {
         this.R_layout_IdView = R_layout_IdView;
     }
 
-
-
-
     @Override
     public View getView(int posicion, View view, ViewGroup pariente) {
         if (view == null) {
@@ -41,9 +38,6 @@ public abstract class Lista_adaptador extends BaseAdapter {
         onEntrada (entradas.get(posicion), view);
         return view;
     }
-
-
-
 
     @Override
     public int getCount() {
